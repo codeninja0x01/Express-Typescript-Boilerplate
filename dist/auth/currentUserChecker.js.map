@@ -1,0 +1,1 @@
+{"version":3,"file":"currentUserChecker.js","sourceRoot":"","sources":["../../../src/auth/currentUserChecker.ts"],"names":[],"mappings":";;;AAKA,SAAgB,sBAAsB,CAAC,UAAsB;IACzD,OAAO,SAAe,2BAA2B,CAAC,MAAc;;YAC5D,OAAO,MAAM,CAAC,OAAO,CAAC,IAAI,CAAC;QAC/B,CAAC;KAAA,CAAC;AACN,CAAC;AAJD,wDAIC"}

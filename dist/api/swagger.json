@@ -1,0 +1,2403 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "",
+      "description": "",
+      "version": "",
+      "contact": {
+        "email": "codeninja0x01@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "",
+    "basePath": "",
+    "schemes": [],
+    "tags": [
+      {
+        "name": "attributes",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "carts",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "categories",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "customers",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "departments",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "orders",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "products",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "shipping",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "stripe",
+        "description": "Everything about your attributes"
+      },
+      {
+        "name": "tax",
+        "description": "Everything about your attributes"
+      }
+    ],
+    "paths": {
+      "/attributes": {
+        "get": {
+          "tags": [
+            "attributes"
+          ],
+          "summary": "Get list of attributes",
+          "description": "",
+          "operationId": "findAttributes",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Attribute"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/attributes/{attributeId}": {
+        "get": {
+          "tags": [
+            "attributes"
+          ],
+          "summary": "Find Attribute by Id",
+          "description": "",
+          "operationId": "findAttributeById",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "attributeId",
+              "in": "path",
+              "description": "ID of attribute to return",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Attribute"
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Attribute not found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/attributes/value/{attributeId}": {
+        "get": {
+          "tags": [
+            "attributes"
+          ],
+          "summary": "Find Attribute value by Id",
+          "description": "",
+          "operationId": "findAttributeValueById",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "attributeId",
+              "in": "path",
+              "description": "ID of attribute to return value",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/AttributeValue"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Attribute value not found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/attributes/product/{attributeId}": {
+        "get": {
+          "tags": [
+            "attributes"
+          ],
+          "summary": "Find Attribute product by Id",
+          "description": "",
+          "operationId": "findAttributeProductById",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "attributeId",
+              "in": "path",
+              "description": "ID of attribute to return product",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/AttributeProduct"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Attribute value not found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/carts": {
+        "post": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Create cart",
+          "description": "",
+          "operationId": "createCarts",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "attribute",
+              "in": "formData",
+              "description": "Product attribute",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "cartKey",
+              "in": "formData",
+              "description": "Cart unique key",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "productId",
+              "in": "formData",
+              "description": "Product Id",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Cart"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartId}/update": {
+        "post": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Update cart quantity",
+          "description": "",
+          "operationId": "updateCarts",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartId",
+              "in": "path",
+              "description": "ID of attribute to return product",
+              "required": true,
+              "type": "integer"
+            },
+            {
+              "name": "quantity",
+              "in": "formData",
+              "description": "Product attribute",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Cart"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartKey}": {
+        "get": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Find Product by cartKey",
+          "description": "",
+          "operationId": "findCartProduct",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartKey",
+              "in": "path",
+              "description": "Key of cart to return product",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Cart"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/carts/generate": {
+        "post": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Generate cartKey",
+          "description": "",
+          "operationId": "generateCartKey",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cartKey": {
+                    "type": "string",
+                    "example": "2671479702829496"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartId}/save": {
+        "get": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Save a Product for latter",
+          "description": "",
+          "operationId": "saveCart",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartId",
+              "in": "path",
+              "description": "CartId to save for",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Nothing"
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartKey}/saved": {
+        "get": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "List of Products saved for latter",
+          "description": "",
+          "operationId": "savedCart",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartKey",
+              "in": "path",
+              "description": "CartId",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Cart"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartId}/total": {
+        "get": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Get Total Amount of the Cart",
+          "description": "",
+          "operationId": "cartTotalPrice",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartId",
+              "in": "path",
+              "description": "CartId",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "total": {
+                    "type": "integer",
+                    "example": 15
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/carts/{cartId}/move": {
+        "get": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Move Product to cart",
+          "description": "",
+          "operationId": "moveCart",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartId",
+              "in": "path",
+              "description": "CartId",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Nothing"
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/carts/empty/{cartkey}": {
+        "delete": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Empty Cart",
+          "description": "",
+          "operationId": "emptyCart",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartkey",
+              "in": "path",
+              "description": "Cartkey",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Nothing"
+            }
+          }
+        }
+      },
+      "/{productId}/product": {
+        "delete": {
+          "tags": [
+            "carts"
+          ],
+          "summary": "Remove product from Cart",
+          "description": "",
+          "operationId": "removeProductCart",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "Cartkey",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Nothing"
+            }
+          }
+        }
+      },
+      "/categories": {
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Get list of categories",
+          "description": "",
+          "operationId": "getCategories",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "$ref": "#/parameters/limitParam"
+            },
+            {
+              "$ref": "#/parameters/offsetParam"
+            },
+            {
+              "$ref": "#/parameters/orderParam"
+            },
+            {
+              "$ref": "#/parameters/orderByParam"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Category"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/categories/{categoryId}": {
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Get list of categories",
+          "description": "",
+          "operationId": "getCategory",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "categoryId",
+              "in": "path",
+              "description": "categoryId",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Category"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/categories/product/{productId}": {
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Get category of product",
+          "description": "",
+          "operationId": "getCategoryProduct",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "productId",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Category"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/categories/department/{departmentId}": {
+        "get": {
+          "tags": [
+            "categories"
+          ],
+          "summary": "Get category of department",
+          "description": "",
+          "operationId": "getCategoryDepartment",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "departmentId",
+              "in": "path",
+              "description": "departmentId",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Category"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/customers": {
+        "post": {
+          "tags": [
+            "customers"
+          ],
+          "summary": "Register Customer",
+          "description": "",
+          "operationId": "createCustomer",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "formData",
+              "description": "Name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "description": "Email",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "description": "Password",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/CustomerToken"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "customers"
+          ],
+          "summary": "Update Customer",
+          "description": "",
+          "operationId": "updateCustomer",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "formData",
+              "description": "Name",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "email",
+              "in": "formData",
+              "description": "Email",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "dayPhone",
+              "in": "formData",
+              "description": "DayPhone",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "evePhone",
+              "in": "formData",
+              "description": "EveningPhone",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "mobPhone",
+              "in": "formData",
+              "description": "MobPhone",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Customer"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        },
+        "get": {
+          "tags": [
+            "customers"
+          ],
+          "summary": "Find current customer",
+          "description": "",
+          "operationId": "findCurrentCustomer",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Customer"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/customers/address": {
+        "post": {
+          "tags": [
+            "customers"
+          ],
+          "summary": "Update customer address",
+          "description": "",
+          "operationId": "updateCustomerAddress",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "address1",
+              "in": "formData",
+              "description": "address1",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "address2",
+              "in": "formData",
+              "description": "address2",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "city",
+              "in": "formData",
+              "description": "city",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "region",
+              "in": "formData",
+              "description": "city",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "postalCode",
+              "in": "formData",
+              "description": "city",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "country",
+              "in": "formData",
+              "description": "country",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Customer"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/customers/card": {
+        "post": {
+          "tags": [
+            "customers"
+          ],
+          "summary": "Update customer credit card",
+          "description": "",
+          "operationId": "updateCustomerCard",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "creditCard",
+              "in": "formData",
+              "description": "address1",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Customer"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/customers/login": {
+        "post": {
+          "tags": [
+            "customers"
+          ],
+          "summary": "Login customer",
+          "description": "",
+          "operationId": "loginCustomer",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "email",
+              "in": "formData",
+              "description": "email",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "password",
+              "in": "formData",
+              "description": "password",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/CustomerToken"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/departments": {
+        "get": {
+          "tags": [
+            "departments"
+          ],
+          "summary": "Get list of departments",
+          "description": "",
+          "operationId": "listDepartments",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Department"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/departments/{departmentId}": {
+        "get": {
+          "tags": [
+            "departments"
+          ],
+          "summary": "Find department by departmentId",
+          "description": "",
+          "operationId": "findDepartment",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "departmentId",
+              "in": "path",
+              "description": "departmentId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Department"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/orders": {
+        "post": {
+          "tags": [
+            "orders"
+          ],
+          "summary": "Create order",
+          "description": "",
+          "operationId": "creatOrder",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "cartKey",
+              "in": "formData",
+              "description": "cartKey",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "taxId",
+              "in": "formData",
+              "description": "taxId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "shippingId",
+              "in": "formData",
+              "description": "shippingId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "orderId": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/orders/customer": {
+        "get": {
+          "tags": [
+            "orders"
+          ],
+          "summary": "Find orders by customer",
+          "description": "",
+          "operationId": "findOrderCustomer",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Order"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/orders/detail/{orderId}": {
+        "get": {
+          "tags": [
+            "orders"
+          ],
+          "summary": "Find orders by orderId",
+          "description": "",
+          "operationId": "findOrderDetail",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "orderId",
+              "in": "path",
+              "description": "orderId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/OrderDetail"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/orders/{orderId}": {
+        "get": {
+          "tags": [
+            "orders"
+          ],
+          "summary": "Find orders by orderId",
+          "description": "",
+          "operationId": "findOrder",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "orderId",
+              "in": "path",
+              "description": "orderId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Order"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/products": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Get list of products",
+          "description": "",
+          "operationId": "getProducts",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "$ref": "#/parameters/limitParam"
+            },
+            {
+              "$ref": "#/parameters/offsetParam"
+            },
+            {
+              "$ref": "#/parameters/orderParam"
+            },
+            {
+              "$ref": "#/parameters/orderByParam"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/search": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Search products",
+          "description": "",
+          "operationId": "searchProducts",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "$ref": "#/parameters/searchParam"
+            },
+            {
+              "$ref": "#/parameters/limitParam"
+            },
+            {
+              "$ref": "#/parameters/offsetParam"
+            },
+            {
+              "$ref": "#/parameters/descLengthParam"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/{productId}/detail": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Find Product by ProductId",
+          "description": "",
+          "operationId": "findProduct",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "productId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Product"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/category/{categoryId}": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Find Product by categoryId",
+          "description": "",
+          "operationId": "findProductCategory",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "categoryId",
+              "in": "path",
+              "description": "categoryId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/limitParam"
+            },
+            {
+              "$ref": "#/parameters/offsetParam"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/department/{departmentId}": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Find Product by departmentId",
+          "description": "",
+          "operationId": "findProductDepartment",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "departmentId",
+              "in": "path",
+              "description": "departmentId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "$ref": "#/parameters/limitParam"
+            },
+            {
+              "$ref": "#/parameters/offsetParam"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/{productId}/locations": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Find Product location by productId",
+          "description": "",
+          "operationId": "productLocation",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "productId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ProductLocation"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/{productId}/reviews": {
+        "get": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Find Product reviews by productId",
+          "description": "",
+          "operationId": "productReview",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "productId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ProductReview"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/products/reviews": {
+        "post": {
+          "tags": [
+            "products"
+          ],
+          "summary": "Create Product review",
+          "description": "",
+          "operationId": "createProductReview",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "formData",
+              "description": "productId",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "review",
+              "in": "formData",
+              "description": "review",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "rating",
+              "in": "formData",
+              "description": "rating",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ProductReview"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          },
+          "security": [
+            {
+              "api_key": []
+            }
+          ]
+        }
+      },
+      "/shipping": {
+        "get": {
+          "tags": [
+            "shipping"
+          ],
+          "summary": "Get list of shipping",
+          "description": "",
+          "operationId": "listShipping",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Shipping"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/shipping/region/{regionId}": {
+        "get": {
+          "tags": [
+            "shipping"
+          ],
+          "summary": "Find shipping by regionId",
+          "description": "",
+          "operationId": "shippingRegion",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "regionId",
+              "in": "path",
+              "description": "regionId",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Shipping"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/stripe/charge": {
+        "get": {
+          "tags": [
+            "stripe"
+          ],
+          "summary": "Stripe payment gateway",
+          "description": "",
+          "operationId": "stripeCharge",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "regionId",
+              "in": "path",
+              "description": "regionId",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/tax": {
+        "get": {
+          "tags": [
+            "tax"
+          ],
+          "summary": "Get list of taxes",
+          "description": "",
+          "operationId": "listTaxes",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Tax"
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      },
+      "/tax/{taxID}": {
+        "get": {
+          "tags": [
+            "tax"
+          ],
+          "summary": "Get list of taxes",
+          "description": "",
+          "operationId": "findTax",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "taxID",
+              "in": "path",
+              "description": "taxID",
+              "required": true,
+              "type": "integer"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Tax"
+              }
+            },
+            "400": {
+              "description": "Invalid input",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "USER-KEY",
+        "in": "header"
+      }
+    },
+    "parameters": {
+      "limitParam": {
+        "name": "limit",
+        "in": "query",
+        "description": "Limits the number of returned results",
+        "required": false,
+        "type": "integer",
+        "default": 20
+      },
+      "offsetParam": {
+        "name": "offset",
+        "in": "query",
+        "description": "Offset from which start returned results",
+        "required": false,
+        "type": "integer",
+        "default": 1
+      },
+      "orderParam": {
+        "name": "order",
+        "in": "query",
+        "description": "Order the results",
+        "required": false,
+        "type": "string",
+        "enum": [
+          "name",
+          "id"
+        ]
+      },
+      "orderByParam": {
+        "name": "orderBy",
+        "in": "query",
+        "description": "OrderBy ASC or Desc the results",
+        "required": false,
+        "type": "string",
+        "enum": [
+          "ASC",
+          "DESC"
+        ]
+      },
+      "searchParam": {
+        "name": "search",
+        "in": "query",
+        "description": "String to search in the database",
+        "required": true,
+        "type": "string"
+      },
+      "descLengthParam": {
+        "name": "descLength",
+        "in": "query",
+        "description": "Description text lenght",
+        "required": false,
+        "type": "string",
+        "default": 200
+      }
+    },
+    "definitions": {
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "totalAmount": {
+            "type": "integer"
+          },
+          "shippedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        }
+      },
+      "OrderDetail": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "order_id": {
+            "type": "integer",
+            "example": 3
+          },
+          "product_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "attribute": {
+            "type": "string",
+            "example": "RED"
+          },
+          "product_name": {
+            "type": "string",
+            "example": "Coat of Arms"
+          },
+          "quantity": {
+            "type": "integer",
+            "example": 2
+          },
+          "unit_cost": {
+            "type": "integer",
+            "example": 15.5
+          },
+          "subtotal": {
+            "type": "integer",
+            "example": 31
+          }
+        }
+      },
+      "ProductLocation": {
+        "type": "object",
+        "properties": {
+          "category_id": {
+            "type": "integer",
+            "example": 3
+          },
+          "category_name": {
+            "type": "string",
+            "example": "French"
+          },
+          "department_id": {
+            "type": "integer",
+            "example": 2
+          },
+          "department_name": {
+            "type": "string",
+            "example": "Regional"
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 3
+          },
+          "name": {
+            "type": "string",
+            "example": "Arc d'Triomphe"
+          },
+          "description": {
+            "type": "string",
+            "example": "This beautiful and iconic T-shirt. . ."
+          },
+          "price": {
+            "type": "string",
+            "example": 14.99
+          },
+          "discountedPrice": {
+            "type": "integer",
+            "example": 0
+          },
+          "image1": {
+            "type": "string",
+            "example": "arc-d-triomphe.gif"
+          },
+          "image2": {
+            "type": "string",
+            "example": "arc-d-triomphe-2.gif"
+          },
+          "thumbnail": {
+            "type": "string",
+            "example": "arc-d-triomphe-thumbnail.gif"
+          },
+          "display": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Christmas"
+          },
+          "description": {
+            "type": "string",
+            "example": "Christmas description"
+          }
+        }
+      },
+      "Tax": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "example": "Sales Tax at 8.5%"
+          },
+          "percentage": {
+            "type": "integer",
+            "example": 8.5
+          }
+        }
+      },
+      "Shipping": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "example": "Next Day Delivery ($20)"
+          },
+          "cost": {
+            "type": "integer",
+            "example": 20
+          },
+          "shippingRegionId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "ProductReview": {
+        "type": "object",
+        "properties": {
+          "review": {
+            "type": "string",
+            "example": "Good"
+          },
+          "rating": {
+            "type": "string",
+            "example": "Christmas"
+          },
+          "customer_name": {
+            "type": "string",
+            "example": "Joe Doe"
+          },
+          "created_on": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Cart": {
+        "type": "object",
+        "required": [
+          "cart_id",
+          "cart_attribute",
+          "product_id"
+        ],
+        "properties": {
+          "cart_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "cart_attribute": {
+            "type": "string",
+            "example": "RED"
+          },
+          "cart_quantity": {
+            "type": "integer",
+            "example": 2
+          },
+          "product_id": {
+            "type": "integer",
+            "example": 5
+          },
+          "product_name": {
+            "type": "string",
+            "example": "Coat of Arms"
+          },
+          "subtotal": {
+            "type": "integer",
+            "example": 29
+          },
+          "price": {
+            "type": "integer",
+            "example": 14.5
+          }
+        }
+      },
+      "Attribute": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Size"
+          }
+        }
+      },
+      "AttributeValue": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "value": {
+            "type": "string",
+            "example": "S"
+          },
+          "attributeId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "Department": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Regional"
+          },
+          "description": {
+            "type": "string",
+            "example": "department description"
+          }
+        }
+      },
+      "AttributeProduct": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "attributeValue_id": {
+            "type": "integer",
+            "example": 3
+          },
+          "attributeValue_name": {
+            "type": "string",
+            "example": "Purple"
+          },
+          "attributeValue_attribute_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "attribute_name": {
+            "type": "string",
+            "example": "Size"
+          }
+        }
+      },
+      "Customer": {
+        "type": "object",
+        "required": [
+          "email",
+          "name",
+          "password"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Joe Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "joedoe@turing.ly"
+          },
+          "address1": {
+            "type": "string",
+            "example": "2432 Jadewood Farms"
+          },
+          "address2": {
+            "type": "string",
+            "example": "Joe Doe"
+          },
+          "city": {
+            "type": "string",
+            "example": "New Brunswick"
+          },
+          "region": {
+            "type": "string",
+            "example": "NJ"
+          },
+          "postalCode": {
+            "type": "string",
+            "example": "08901"
+          },
+          "country": {
+            "type": "string",
+            "example": "Joe Doe"
+          },
+          "dayPhone": {
+            "type": "string",
+            "example": "973-404-5425"
+          },
+          "evePhone": {
+            "type": "string",
+            "example": "973-404-5425"
+          },
+          "mobPhone": {
+            "type": "string",
+            "example": "973-404-5425"
+          },
+          "shippingRegionId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "CustomerToken": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "customer": {
+            "$ref": "#/definitions/Customer"
+          },
+          "expires_in": {
+            "type": "string",
+            "example": "1H"
+          },
+          "accessToken": {
+            "type": "string",
+            "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydWNlLndheW5lQHdheW5lLWVudGVycHJpc2VzLmNvbSIsIm5hbWUiOiJCcnVjZSBXYXluZSIsImlhdCI6MTU2MTA0OTkzNSwiZXhwIjoxNTYxMDUzNTM1fQ.4LnjKc6e_LsUeyNsuO4HYtrRpcmY4h4tWr3lYy42CMw"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Error"
+          },
+          "message": {
+            "type": "string",
+            "example": "The field example is empty."
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  }
