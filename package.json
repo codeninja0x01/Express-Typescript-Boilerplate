@@ -33,7 +33,7 @@
     "express": "^4.17.1",
     "express-basic-auth": "^1.2.0",
     "express-graphql": "^0.8.0",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "^6.0.0",
     "express-rate-limit": "^5.0.0",
     "express-status-monitor": "^1.2.6",
     "faker": "^4.1.0",
